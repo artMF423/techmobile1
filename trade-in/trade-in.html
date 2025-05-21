@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMobile - Trade-In</title>
+    <style>
+        /* Основные стили из предыдущих страниц */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: black;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Header styles */
+    header {
+        padding: 15px 5%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #121212;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        margin-right: 20px;
+    }
+
+    .logo img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+
+    .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .nav-button {
+        min-width: 120px;
+        height: 45px;
+        background-color: #212121;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        transition: all 0.3s;
+        padding: 0 20px !important;
+        line-height: 45px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .nav-button:hover {
+        background-color: #333;
+        transform: translateY(-2px);
+    }
+
+    /* Main content styles */
+    main {
+        flex: 1;
+        padding: 30px 5%;
+    }
+
+    .section-title {
+        font-size: 28px;
+        margin: 30px 0 20px;
+        font-weight: 600;
+        position: relative;
+        padding-left: 15px;
+    }
+
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        bottom: 5px;
+        width: 4px;
+        background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+        border-radius: 2px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .product-card {
+        background: #1a1a1a;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .product-image-container {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        background: #252525;
+    }
+
+    .product-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .product-info {
+        padding: 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-title {
+        font-size: 15px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        line-height: 1.3;
+    }
+
+    .product-price {
+        font-size: 16px;
+        margin-bottom: 15px;
+        color: #f1f1f1;
+        font-weight: 600;
+    }
+
+    .add-to-cart {
+        background: linear-gradient(to right, #4e54c8, #8f94fb);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: auto;
+        font-weight: 500;
+    }
+
+    .add-to-cart:hover {
+        background: linear-gradient(to right, #3a3f9e, #7b80e8);
+        transform: translateY(-2px);
+    }
+
+      /* Footer styles */
+      footer {
+            padding: 30px 5%;
+            background: #121212;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #8f94fb;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #8f94fb;
+        }
+
+        .tradein-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #1a1a1a;
+            border-radius: 15px;
+        }
+
+        .tradein-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .tradein-step {
+            background: #252525;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .calculator {
+            background: #252525;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 10px;
+            color: #8f94fb;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: 12px;
+            background: #1a1a1a;
+            border: 2px solid #333;
+            border-radius: 8px;
+            color: white;
+        }
+
+        .condition-slider {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .price-estimate {
+            font-size: 24px;
+            color: #4e54c8;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .tradein-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .calculator {
+                padding: 20px;
+            }
+        }
+        .section-title {
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        text-align: center;
+        font-size: 2.5rem;
+        margin: 2rem 0;
+        position: relative;
+        padding: 15px 0;
+    }
+
+    .section-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 120px;
+        height: 3px;
+        background: linear-gradient(90deg, #4e54c8, #8f94fb);
+    }
+
+    .tradein-step {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: 2px solid transparent;
+        background: linear-gradient(45deg, #1a1a1a, #252525) padding-box,
+                    linear-gradient(135deg, #4e54c8, #8f94fb) border-box;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    }
+
+    .tradein-step:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(78,84,200,0.3);
+    }
+
+    .step-number {
+        width: 50px;
+        height: 50px;
+        font-size: 1.2rem;
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        box-shadow: 0 5px 15px rgba(78,84,200,0.3);
+    }
+
+    .calculator {
+        background: linear-gradient(145deg, #1e1e1e, #232323);
+        border: 2px solid #2d2d2d;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .calculator::before {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, 
+            rgba(78,84,200,0.1), transparent);
+        transform: rotate(45deg);
+        animation: shine 6s infinite;
+    }
+
+    @keyframes shine {
+        0% { transform: rotate(45deg) translate(-50%, -50%); }
+        100% { transform: rotate(45deg) translate(150%, 150%); }
+    }
+
+    .form-select {
+        transition: all 0.3s;
+        border: 2px solid #333;
+    }
+
+    .form-select:focus {
+        border-color: #4e54c8;
+        box-shadow: 0 0 15px rgba(78,84,200,0.2);
+    }
+
+    .condition-slider {
+        -webkit-appearance: none;
+        height: 8px;
+        border-radius: 4px;
+        background: #333;
+    }
+
+    .condition-slider::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #4e54c8;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .condition-slider::-webkit-slider-thumb:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px rgba(78,84,200,0.5);
+    }
+
+    .price-estimate {
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        padding: 20px;
+        border-radius: 12px;
+        margin: 30px 0;
+        position: relative;
+        overflow: hidden;
+        animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.02); }
+        100% { transform: scale(1); }
+    }
+
+    .cta-button {
+        background: linear-gradient(135deg, #4e54c8, #8f94fb);
+        border: none;
+        padding: 15px 40px;
+        border-radius: 50px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s;
+    }
+
+    .cta-button::after {
+        content: '';
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(45deg, transparent, 
+            rgba(255,255,255,0.1), transparent);
+        transform: rotate(45deg);
+        transition: all 0.5s;
+    }
+
+    .cta-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(78,84,200,0.4);
+    }
+
+    .cta-button:hover::after {
+        left: 150%;
+    }
+
+    .advantages li {
+        padding: 15px;
+        margin: 10px 0;
+        background: rgba(78,84,200,0.1);
+        border-left: 4px solid #4e54c8;
+        transition: all 0.3s;
+    }
+
+    .advantages li:hover {
+        transform: translateX(10px);
+        background: rgba(78,84,200,0.2);
+    }
+
+    @media (max-width: 768px) {
+        .section-title {
+            font-size: 2rem;
+            padding: 10px 0;
+        }
+        
+        .calculator::before {
+            animation: none;
+        }
+        
+        .cta-button {
+            width: 100%;
+            text-align: center;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/glavnaya/glavnaya.html">
+                <img src="freepik__background__29318 2.png" alt="TechLogo">
+            </a>
+        </div>
+        <div class="nav-buttons">
+            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="/zakaz/zakaz.html" class="nav-button">Корзина</a>
+            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="tradein-content">
+            <h1 class="section-title">Обменяй старое устройство на новое</h1>
+
+            <div class="tradein-steps">
+                <div class="tradein-step">
+                    <div class="step-number">1</div>
+                    <h3>Оцените устройство</h3>
+                    <p>Заполните форму и узнайте предварительную стоимость</p>
+                </div>
+                <div class="tradein-step">
+                    <div class="step-number">2</div>
+                    <h3>Привезите в магазин</h3>
+                    <p>Мы проведем окончательную оценку</p>
+                </div>
+                <div class="tradein-step">
+                    <div class="step-number">3</div>
+                    <h3>Получите скидку</h3>
+                    <p>Сумма Trade-In вычитается из стоимости нового устройства</p>
+                </div>
+            </div>
+
+            <div class="calculator">
+                <h2>Калькулятор Trade-In</h2>
+                
+                <div class="form-group">
+                    <label class="form-label">Тип устройства</label>
+                    <select class="form-select" id="deviceType">
+                        <option value="phone">Смартфон</option>
+                        <option value="tablet">Планшет</option>
+                        <option value="watch">Умные часы</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Модель</label>
+                    <select class="form-select" id="deviceModel">
+                        <option value="iphone">Apple iPhone</option>
+                        <option value="samsung">Samsung Galaxy</option>
+                        <option value="xiaomi">Xiaomi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Год выпуска</label>
+                    <input type="number" class="form-select" min="2015" max="2024" value="2022">
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label">Состояние устройства</label>
+                    <input type="range" class="condition-slider" min="1" max="5" value="3">
+                    <div class="condition-labels">
+                        <span>Плохое</span>
+                        <span>Хорошее</span>
+                        <span>Идеальное</span>
+                    </div>
+                </div>
+
+                <div class="price-estimate">
+                    Примерная стоимость: <span id="estimatePrice">15 000 ₽</span>
+                </div>
+
+                <button class="cta-button">Оставить заявку</button>
+            </div>
+
+            <div class="advantages">
+                <h2>Преимущества Trade-In</h2>
+                <ul class="warranty-list">
+                    <li>Дополнительная скидка до 30%</li>
+                    <li>Бесплатная оценка устройства</li>
+                    <li>Мгновенный вычет из стоимости</li>
+                    <li>Экологичная утилизация</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <p>TechMobile - ведущий поставщик мобильной электроники с 2015 года. Мы предлагаем только оригинальную технику с официальной гарантией.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: +7 (495) 123-45-67</li>
+                    <li>Email: info@techmobile.ru</li>
+                    <li>Адрес: Москва, ул. Технологическая, 15</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Полезные ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="/warranty/warranty.html">Гарантия</a></li>
+                    <li><a href="/delivery/delivery.html">Доставка</a></li>
+                    <li><a href="/trade-in/trade-in.html">Trade-in</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Логика калькулятора
+        const updatePrice = () => {
+            const basePrices = {
+                phone: 20000,
+                tablet: 15000,
+                watch: 5000
+            };
+            
+            const conditionMultiplier = [0.3, 0.5, 0.7, 0.85, 1];
+            const type = document.getElementById('deviceType').value;
+            const condition = document.querySelector('.condition-slider').value - 1;
+            
+            let price = basePrices[type] * conditionMultiplier[condition];
+            document.getElementById('estimatePrice').textContent = 
+                `${Math.round(price).toLocaleString()} ₽`;
+        };
+
+        document.querySelectorAll('select, .condition-slider').forEach(element => {
+            element.addEventListener('change', updatePrice);
+        });
+
+        updatePrice();
+    </script>
+</body>
+</html>
