@@ -70,12 +70,21 @@
             font-size: 14px;
             transition: all 0.3s;
             padding: 0 15px;
+            text-align: center; 
+            padding: 0 15px !important; 
+            line-height: 1; 
+            
+            line-height: 45px !important;    
+            text-align: center;              
+            padding: 0 20px !important;      
+            white-space: nowrap;                
         }
 
         .nav-button:hover {
             background-color: #333;
             transform: translateY(-2px);
         }
+
 
         /* Main content styles */
         main {
@@ -236,15 +245,15 @@
 <body>
     <header>
         <div class="logo">
-            <a href="/glavnaya/glavnaya.html">
+            <a href="glavnaya/glavnaya.html">
                 <img src="freepik__background__29318 2 (1).png" alt="TechMobile">
             </a>
         </div>
         <div class="nav-buttons">
-            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
-            <a href="/zakaz/zakaz.html" class="nav-button">Корзина</a>
-            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
-            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
+            <a href="cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="zakaz/zakaz.html" class="nav-button">Корзина</a>
+            <a href="profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
         </div>
     </header>
 
@@ -281,17 +290,17 @@
         <h2 class="section-title">Рекомендуем к покупке</h2>
         
         <div class="brands-grid">
-            <div class="brand-card">
+            <div class="brand-card"><a href="/smart-watches/smart-watches.html">
                 <img src="watch-Photoroom.png" alt="Умные часы" class="brand-logo">
-                <p class="product-title">Умные часы</p>
+                <p class="product-title">Умные часы</p></a>
             </div>
-            <div class="brand-card">
+            <div class="brand-card"><a href="/powerbank/powerbank.html">
                 <img src="powerbank-Photoroom .png" alt="Power Bank" class="brand-logo">
-                <p class="product-title">Портативные зарядки</p>
+                <p class="product-title">Портативные зарядки</p></a>
             </div>
-            <div class="brand-card">
+            <div class="brand-card"><a href="/cehol/cehol.html">
                 <img src="cehol-Photoroom.png" alt="Чехлы" class="brand-logo">
-                <p class="product-title">Защитные чехлы</p>
+                <p class="product-title">Защитные чехлы</p></a>
             </div>
         </div>
     </main>
@@ -313,12 +322,32 @@
             <div class="footer-section">
                 <h3>Полезные ссылки</h3>
                 <ul class="footer-links">
-                    <li><a href="/warranty">Гарантия</a></li>
-                    <li><a href="/delivery">Доставка</a></li>
-                    <li><a href="/trade-in">Trade-in</a></li>
+                    <li><a href="/warranty/warranty.html">Гарантия</a></li>
+                    <li><a href="/delivery/delivery.html">Доставка</a></li>
+                    <li><a href="/trade-in/trade-in.html">Trade-in</a></li>
                 </ul>
             </div>
         </div>
     </footer>
+    <script>
+        // Проверка состояния авторизации
+        document.addEventListener('DOMContentLoaded', () => {
+            updateAuthState();
+        });
+    
+        // Обновление состояния кнопок
+        function updateAuthState() {
+            const isLoggedIn = !!sessionStorage.getItem('currentUser');
+            document.getElementById('profileBtn').style.display = isLoggedIn ? 'block' : 'none';
+            document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'block';
+        }
+    
+        // Логика выхода
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            updateAuthState();
+            window.location.href = '/'; // Перенаправление на главную
+        }
+    </script>
 </body>
 </html>
