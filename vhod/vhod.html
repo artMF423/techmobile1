@@ -1,278 +1,482 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Регистрация</title>
+    <title>TechMobile - Электроника</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-        *{
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
+        
+        /* Reset */
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-        }
-        body{
-            background-color: black;
-            font-family: Montserrat;
-            color: white;
-        }
-        .knopki{
-            display: block;
-        }
-        .logo{
-            position: relative;
-            left: 29px;
-            top: 10px;
-        }
-        .cataloge{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 40px;
-            top: 22px;
-        }
-        .cataloge1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 331px;
-            bottom: 60px;
-        }
-        .zakaz{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-        .zakaz1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 532px;
-            bottom: 129px;
-        }
-        .profile{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 36px;
-            top: 22px;
-        }
-        .profile1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 720px;
-            bottom: 198px;
-        }
-        .vhod{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-        .vhod1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 1225px;
-            bottom: 269px;
-        }
-        .brends{
-            display: flex;
-        }
-        .brendsp{
-            font-size: 36px;
-            position: relative;
-            left: 60px;
-            bottom: 240px;
-        }
-        
-      
-        .registration-container {
-            position: relative;
-            width: 90%;
-            max-width: 450px;
-            margin: 50px auto;
-            padding: 40px;
-            background-color: #212121;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-        }
-        
-        .registration-title {
-            text-align: center;
-            font-size: 28px;
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 10px;
-            font-size: 16px;
-        }
-        
-        .form-group input {
-            width: 100%;
-            padding: 15px 20px;
-            background-color: #333;
-            border: none;
-            border-radius: 10px;
-            color: white;
-            font-family: Montserrat;
-            font-size: 16px;
-        }
-        
-        .form-group input:focus {
-            outline: none;
-            background-color: #444;
-            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
-        }
-        
-        .register-btn {
-            width: 100%;
-            padding: 16px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 10px;
-            font-family: Montserrat;
-            font-size: 18px;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin-top: 10px;
-        }
-        
-        .register-btn:hover {
-            background-color: #444;
-            transform: translateY(-2px);
-        }
-        
-        .login-link {
-            text-align: center;
-            margin-top: 25px;
-            font-size: 15px;
-        }
-        
-        .login-link a {
-            color: #aaa;
-            text-decoration: none;
-            transition: color 0.3s;
-            font-weight: 500;
-        }
-        
-        .login-link a:hover {
-            color: white;
-            text-decoration: underline;
+            font-family: 'Montserrat', sans-serif;
         }
 
-        
+        /* Global */
+        body {
+            background: #0a0a0a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            line-height: 1.6;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Header */
+        header {
+            padding: 1rem 5%;
+            background: #121212;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: scale(1.05);
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            background: #212121;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            transition: all 0.3s;
+            color: #fff;
+            border: 2px solid transparent;
+            
+        }
+
+        .nav-button:hover {
+            background: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        main {
+            flex: 1;
+            padding: 2rem 5%;
+        }
+
+        /* Auth Container */
+        .auth-container {
+            max-width: 500px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 1rem;
+            box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.3);
+        }
+
+        /* Forms */
+        .tabs {
+            display: flex;
+            margin-bottom: 2rem;
+            border-bottom: 2px solid #2a2a2a;
+        }
+
+        .tab {
+            flex: 1;
+            padding: 1rem;
+            text-align: center;
+            cursor: pointer;
+            color: #666;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .tab.active {
+            color: #fff;
+            border-bottom: 3px solid #4e54c8;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 1rem;
+            background: #252525;
+            border: 2px solid transparent;
+            border-radius: 0.8rem;
+            color: #fff;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            border-color: #4e54c8;
+            background: #2a2a2a;
+            outline: none;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 1rem;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: #fff;
+            border: none;
+            border-radius: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .auth-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        /* Messages */
+        .message {
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            text-align: center;
+            display: none;
+        }
+
+        .error {
+            background: #ff4444;
+        }
+
+        .success {
+            background: #00C851;
+        }
+
+        /* Profile */
+        .profile-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: #1a1a1a;
+            border-radius: 1rem;
+            text-align: center;
+        }
+
+        .profile-title {
+            color: #8f94fb;
+            margin-bottom: 2rem;
+        }
+
+        .user-info p {
+            margin: 1rem 0;
+            font-size: 1.1rem;
+        }
+
+        .logout-btn {
+            padding: 0.8rem 2rem;
+            background: #ff4444;
+            color: #fff;
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .logout-btn:hover {
+            background: #cc0000;
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            background: #121212;
+            padding: 2rem 5%;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h3 {
+            color: #8f94fb;
+            margin-bottom: 1rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin: 0.5rem 0;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #8f94fb;
+        }
+
+        /* Mobile */
         @media (max-width: 768px) {
-            .registration-container {
-                width: 95%;
-                padding: 30px 25px;
-                margin: 30px auto;
+            header {
+                padding: 1rem;
+                gap: 0.5rem;
             }
-            
-            .registration-title {
-                font-size: 24px;
+
+            .nav-button {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
             }
-            
-            .form-group input {
-                padding: 12px 15px;
+
+            .auth-container {
+                padding: 1.5rem;
+                margin: 1rem auto;
+            }
+
+            .form-input {
+                padding: 0.8rem;
+            }
+
+            .auth-btn {
+                padding: 0.8rem;
+            }
+
+            footer {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-buttons {
+                gap: 0.5rem;
+            }
+
+            .tab {
+                padding: 0.8rem;
+                font-size: 0.9rem;
+            }
+
+            .auth-container {
+                padding: 1rem;
+            }
+
+            .profile-container {
+                padding: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <header>
-    <div class="knopki">
-        <div class="logo"><a href="/glavnaya/glavnaya.html"><img src="freepik__background__29318 2 (1) (2).png" alt=""></a></div>
-        <div class="cataloge1"><a href="/cataloge/cataloge.html" class="cataloge">Каталог</a></div>
-        <div class="zakaz1"><a href="/zakaz/zakaz.html" class="zakaz">Заказы</a></div>
-        <div class="profile1"><a href="/profile/profile.html" class="profile">Профиль</a></div>
-        <div class="vhod1"><a href="/vhod/vhod.html" class="vhod">Войти</a></div>
-    </div>
+        <a href="/glavnaya/glavnaya.html" class="logo">
+            <img src="freepik__background__29318 2 (1) (2).png" alt="TechMobile">
+        </a>
+        <nav class="nav-buttons">
+            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="/zakaz/zakaz.html" class="nav-button">Заказы</a>
+            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
+        </nav>
     </header>
-    
-    <div class="registration-container">
-        <h2 class="registration-title">Регистрация</h2>
-        <form id="registrationForm">
-            <div class="form-group">
-                <label for="username">Имя пользователя</label>
-                <input type="text" id="username" name="username" required>
+
+    <main>
+        <!-- Auth/Profile Content -->
+        <div class="auth-container" id="authBlock">
+            <div class="tabs">
+                <div class="tab active" onclick="switchTab('register')">Регистрация</div>
+                <div class="tab" onclick="switchTab('login')">Вход</div>
             </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" id="email" name="email" required>
-            </div>
-            <div class="form-group">
-                <label for="password">Пароль</label>
-                <input type="password" id="password" name="password" required>
-            </div>
-            <div class="form-group">
-                <label for="confirmPassword">Подтвердите пароль</label>
-                <input type="password" id="confirmPassword" name="confirmPassword" required>
-            </div>
-            <button type="submit" class="register-btn">Зарегистрироваться</button>
-        </form>
-        <div class="login-link">
-            Уже есть аккаунт? <a href="/vhod/vhod.html">Войти</a>
+
+            <form id="registerForm" style="display: block;">
+                <div class="form-group">
+                    <label class="form-label" for="regUsername">Имя</label>
+                    <input type="text" class="form-input" id="regUsername" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="regEmail">Email</label>
+                    <input type="email" class="form-input" id="regEmail" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="regPassword">Пароль</label>
+                    <input type="password" class="form-input" id="regPassword" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="regConfirm">Подтвердите пароль</label>
+                    <input type="password" class="form-input" id="regConfirm" required>
+                </div>
+                <button type="submit" class="auth-btn">Зарегистрироваться</button>
+                <div class="message" id="regMessage"></div>
+            </form>
+
+            <form id="loginForm" style="display: none;">
+                <div class="form-group">
+                    <label class="form-label" for="loginEmail">Email</label>
+                    <input type="email" class="form-input" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label" for="loginPassword">Пароль</label>
+                    <input type="password" class="form-input" id="loginPassword" required>
+                </div>
+                <button type="submit" class="auth-btn">Войти</button>
+                <div class="message" id="loginMessage"></div>
+            </form>
         </div>
-    </div>
+
+        <div class="profile-container" id="profileBlock" style="display: none;">
+            <h2 class="profile-title">Ваш профиль</h2>
+            <div class="user-info">
+                <p>Имя: <span id="profileUsername"></span></p>
+                <p>Email: <span id="profileEmail"></span></p>
+            </div>
+            <button class="logout-btn" onclick="logout()">Выйти</button>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <p>TechMobile - лидер в продаже электроники с 2015 года. Гарантия качества и лучшие цены.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: +7 (495) 123-45-67</li>
+                    <li>Email: info@techmobile.ru</li>
+                    <li>Адрес: Москва, ул. Технологическая, 15</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Поддержка</h3>
+                <ul class="footer-links">
+                    <li><a href="/delivery/delivery.html">Доставка</a></li>
+                    <li><a href="/warranty/warranty.html">Гарантия</a></li>
+                    <li><a href="/trade-in/trade-in.html">Trade-in</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        document.getElementById('registrationForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-           
-            const username = document.getElementById('username').value;
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            const confirmPassword = document.getElementById('confirmPassword').value;
-            
-          
-            if (password !== confirmPassword) {
-                alert('Пароли не совпадают!');
-                return;
-            }
-            
-            if (password.length < 6) {
-                alert('Пароль должен содержать минимум 6 символов!');
-                return;
-            }
-            
-           
-           
-            alert('Регистрация успешна! Добро пожаловать, ' + username + '!');
-            
-           
-            this.reset();
-            localStorage.setItem('userData', JSON.stringify({
-            username: username,
-            email: email,
-            password: password
-            }));
-           
+        let users = JSON.parse(localStorage.getItem('users')) || [];
+
+        // Инициализация
+        document.addEventListener('DOMContentLoaded', () => {
+            updateAuthState();
+            const currentUser = sessionStorage.getItem('currentUser');
+            if(currentUser) showProfile(JSON.parse(currentUser));
         });
+
+        // Переключение вкладок
+        function switchTab(tab) {
+            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('form').forEach(f => f.style.display = 'none');
+            
+            if(tab === 'register') {
+                document.getElementById('registerForm').style.display = 'block';
+                document.querySelector('.tab:first-child').classList.add('active');
+            } else {
+                document.getElementById('loginForm').style.display = 'block';
+                document.querySelector('.tab:last-child').classList.add('active');
+            }
+        }
+
+        // Сообщения
+        function showMessage(elementId, text, type) {
+            const el = document.getElementById(elementId);
+            el.textContent = text;
+            el.className = `message ${type}`;
+            el.style.display = 'block';
+            setTimeout(() => el.style.display = 'none', 3000);
+        }
+
+        // Регистрация
+        document.getElementById('registerForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const username = document.getElementById('regUsername').value.trim();
+            const email = document.getElementById('regEmail').value.trim().toLowerCase();
+            const password = document.getElementById('regPassword').value;
+            const confirm = document.getElementById('regConfirm').value;
+
+            if(password !== confirm) return showMessage('regMessage', 'Пароли не совпадают!', 'error');
+            if(password.length < 6) return showMessage('regMessage', 'Пароль должен быть не менее 6 символов', 'error');
+            if(users.some(u => u.email === email)) return showMessage('regMessage', 'Email уже зарегистрирован', 'error');
+
+            users.push({ username, email, password });
+            localStorage.setItem('users', JSON.stringify(users));
+            showMessage('regMessage', 'Регистрация успешна! Войдите в систему', 'success');
+            switchTab('login');
+            e.target.reset();
+        });
+
+        // Авторизация
+        document.getElementById('loginForm').addEventListener('submit', e => {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value.trim().toLowerCase();
+            const password = document.getElementById('loginPassword').value;
+            const user = users.find(u => u.email === email);
+
+            if(!user) return showMessage('loginMessage', 'Пользователь не найден', 'error');
+            if(user.password !== password) return showMessage('loginMessage', 'Неверный пароль', 'error');
+
+            sessionStorage.setItem('currentUser', JSON.stringify(user));
+            showProfile(user);
+        });
+
+        // Показать профиль
+        function showProfile(user) {
+            document.getElementById('authBlock').style.display = 'none';
+            document.getElementById('profileBlock').style.display = 'block';
+            document.getElementById('profileUsername').textContent = user.username;
+            document.getElementById('profileEmail').textContent = user.email;
+            updateAuthState();
+        }
+
+        // Выход
+        function logout() {
+        sessionStorage.removeItem('currentUser');
+        document.getElementById('authBlock').style.display = 'block';
+        document.getElementById('profileBlock').style.display = 'none';
+        updateAuthState();
+        window.location.href = '/glavnaya/glavnaya.html'; // Добавьте перенаправление при выходе
+}
+
+        // Обновить состояние авторизации
+        function updateAuthState() {
+            const isLoggedIn = !!sessionStorage.getItem('currentUser');
+            document.getElementById('profileBtn').style.display = isLoggedIn ? 'block' : 'none';
+            document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'block';
+        }
     </script>
 </body>
 </html>
