@@ -1,638 +1,533 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TechLogo - Магазин электроники</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
         * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
 
         body {
             background-color: black;
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             color: white;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
-        .knopki {
-            display: block;
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header styles */
+        header {
+            padding: 15px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #121212;
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
         .logo {
-            position: relative;
-            left: 29px;
-            top: 10px;
+            width: px;
+            margin-right: 20px;
         }
 
-        .cataloge {
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 40px;
-            top: 22px;
+        .logo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
         }
 
-        .cataloge1 {
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 331px;
-            bottom: 60px;
-        }
-
-        .zakaz {
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-
-        .zakaz1 {
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 532px;
-            bottom: 129px;
-        }
-
-        .profile {
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 36px;
-            top: 22px;
-        }
-
-        .profile1 {
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 720px;
-            bottom: 198px;
-        }
-
-        .vhod {
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-
-        .vhod1 {
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 1225px;
-            bottom: 269px;
-        }
-
-        .chasto {
-            color: white;
-            font-family: Montserrat;
-            font-size: 32px;
-            position: relative;
-            left: 80px;
-            bottom: 210px;
-        }
-
-        .phones {
+        .nav-buttons {
             display: flex;
-
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
         }
 
-        .phones button {
-            background-color: black;
-            border: none;
-            color: white;
-            font-family: Montserrat;
-        }
-
-        .iphone {
-            position: relative;
-            left: 40px;
-            bottom: 210px;
-            padding-left: 30px;
-        }
-
-        .p11 {
-            position: relative;
-            left: 20px;
-            bottom: 16px;
-            font-size: 15px;
-        }
-
-        .p1 {
-            position: relative;
-            left: 62px;
-            bottom: 14px;
-            font-size: 15px;
-        }
-
-        .iphone button {
-            position: relative;
-            left: 29px;
-            font-size: 15px;
-            bottom: 10px;
-        }
-
-        .xiaomi {
-            position: relative;
-            left: 53px;
-            bottom: 206px;
-
-        }
-
-        .p12 {
-            position: relative;
-            left: 38px;
-            bottom: 16px;
-            font-size: 15px;
-        }
-
-        .p2 {
-            position: relative;
-            left: 58px;
-            bottom: 14px;
-            font-size: 15px;
-        }
-
-        .xiaomi button {
-            position: relative;
-            left: 25px;
-            font-size: 15px;
-            bottom: 10px;
-        }
-
-        .vivo {
-            position: relative;
-            left: 76px;
-            bottom: 194px;
-        }
-
-        .p13 {
-            position: relative;
-            left: 15px;
-            bottom: 9px;
-            font-size: 15px;
-        }
-
-        .p3 {
-            position: relative;
-            left: 50px;
-            bottom: 6px;
-            font-size: 15px;
-        }
-
-        .vivo button {
-            position: relative;
-            left: 16px;
-            font-size: 15px;
-            bottom: 2px;
-        }
-
-        .oneplus {
-            position: relative;
-            left: 125px;
-            bottom: 190px;
-        }
-
-        .p14 {
-            position: relative;
-            left: 35px;
-            bottom: -7px;
-            font-size: 15px;
-        }
-
-        .p4 {
-            position: relative;
-            left: 43px;
-            bottom: -10px;
-            font-size: 15px;
-        }
-
-        .oneplus button {
-            position: relative;
-            left: 9px;
-            font-size: 15px;
-            bottom: -15px;
-        }
-
-        .realme {
-            position: relative;
-            left: 175px;
-            bottom: 197px;
-        }
-
-        .p15 {
-            position: relative;
-            left: 25px;
-            bottom: 1px;
-            font-size: 15px;
-        }
-
-        .p5 {
-            position: relative;
-            left: 43px;
-            bottom: -2px;
-            font-size: 15px;
-        }
-
-        .realme button {
-            position: relative;
-            left: 9px;
-            font-size: 15px;
-            bottom: -7px;
-        }
-
-        .samsung {
-            position: relative;
-            left: 245px;
-            bottom: 191px;
-        }
-
-        .p16 {
-            position: relative;
-            left: 12px;
-            bottom: -4px;
-            font-size: 15px;
-        }
-
-        .p6 {
-            position: relative;
-            left: 25px;
-            bottom: -8px;
-            font-size: 15px;
-        }
-
-        .samsung button {
-            position: relative;
-            left: -10px;
-            font-size: 15px;
-            bottom: -13px;
-        }
-
-        .footer1 {
-            position: relative;
-            bottom: 45px;
-            font-size: 10px;
-            width: 1280px;
-            left: 50px;
-            color: #393939;
-        }
-
-        .acsesuari {
-            position: relative;
-            bottom: 170px;
+        .nav-button {
+            min-width: 120px;
+            height: 45px;
+            background-color: #212121;
+            border-radius: 25px;
             display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 0 15px;
         }
 
-        .asc1 {
-            color: white;
-            font-family: Montserrat;
-            font-size: 32px;
+        .nav-button:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+            padding: 30px 5%;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin: 30px 0 20px;
+            font-weight: 600;
             position: relative;
-            left: 80px;
+            padding-left: 15px;
         }
 
-        .buds {
-            display: flex;
-            position: relative;
-            top: 80px;
-            right: 120px;
-
-        }
-
-        .buds button {
-            background-color: black;
-            border: none;
-            color: white;
-            font-family: Montserrat;
-        }
-
-        .airpodsmax {
-            margin-left: 30px;
-        }
-
-        .buds11 {
-            position: relative;
-            left: 10px;
-        }
-
-        .airpodsmax button {
-            position: relative;
-            left: 15px;
-            top: 2px;
-        }
-
-        .airpods3 {
-            margin-left: 100px;
-        }
-
-        .buds2 {
-            position: relative;
-            left: 5px;
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
             top: 5px;
+            bottom: 5px;
+            width: 4px;
+            background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+            border-radius: 2px;
         }
 
-        .buds12 {
-            position: relative;
-            left: 10px;
-            top: 4px;
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
         }
 
-        .airpods3 button {
-            position: relative;
-            left: 15px;
-            top: 6px;
+        .product-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .jbl {
-            margin-left: 100px;
-            position: relative;
-            bottom: 20px;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
         }
 
-        .buds3 {
-            position: relative;
-            left: 3px;
-            top: 10px;
+        .product-image-container {
+            width: 100%;
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 15px;
+            background: #252525;
         }
 
-        .buds13 {
-            position: relative;
-            left: 15px;
-            top: 10px;
+        .product-image {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
         }
 
-        .jbl button {
-            position: relative;
-            left: 15px;
-            top: 12px;
+        .product-info {
+            padding: 15px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
         }
 
-        .samsungbuds {
-            margin-left: 100px;
-            position: relative;
-            bottom: 20px;
+        .product-title {
+            font-size: 15px;
+            margin-bottom: 8px;
+            font-weight: 500;
+            line-height: 1.3;
         }
 
-        .buds4 {
-            position: relative;
-            left: 25px;
-            top: 9px;
+        .product-price {
+            font-size: 16px;
+            margin-bottom: 15px;
+            color: #f1f1f1;
+            font-weight: 600;
         }
 
-        .buds14 {
-            position: relative;
-            left: 15px;
-            top: 9px;
+        .add-to-cart {
+            background: linear-gradient(to right, #4e54c8, #8f94fb);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: auto;
+            font-weight: 500;
         }
 
-        .samsungbuds button {
-            position: relative;
-            top: 10px;
-            left: 19px;
+        .add-to-cart:hover {
+            background: linear-gradient(to right, #3a3f9e, #7b80e8);
+            transform: translateY(-2px);
         }
 
-        .sony {
-            margin-left: 100px;
-            position: relative;
-            bottom: 25px;
+        /* Footer styles */
+        footer {
+            padding: 30px 5%;
+            background: #121212;
+            margin-top: 50px;
         }
 
-        .buds5 {
-            position: relative;
-            left: 10px;
-            top: 7px;
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        .buds15 {
-            position: relative;
-            left: 30px;
-            top: 5px;
-
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #8f94fb;
         }
 
-        .sony button {
-            position: relative;
-            left: 35px;
-            top: 6px;
+        .footer-links {
+            list-style: none;
         }
 
-        .oneplusbuds {
-            margin-left: 45px;
-            position: relative;
-            bottom: 12px;
+        .footer-links li {
+            margin-bottom: 8px;
         }
 
-        .buds6 {
-            position: relative;
-            left: 15px;
-            bottom: 13px;
-
+        .footer-links a:hover {
+            color: #8f94fb;
         }
 
-        .buds16 {
-            position: relative;
-            left: 40px;
-            bottom: 14px;
+        /* Media queries for responsive design */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                gap: 20px;
+            }
+            
+            .product-image-container {
+                height: 160px;
+            }
         }
 
-        .oneplusbuds button {
-            position: relative;
-            left: 42px;
-            bottom: 13px;
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .nav-buttons {
+                width: 100%;
+                justify-content: space-between;
+                gap: 10px;
+            }
+            
+            .nav-button {
+                min-width: calc(25% - 10px);
+                height: 40px;
+                font-size: 13px;
+                padding: 0 10px;
+            }
+            
+            main {
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+                margin: 25px 0 15px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+                gap: 15px;
+            }
+            
+            .product-image-container {
+                height: 140px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-button {
+                min-width: calc(50% - 5px);
+                height: 38px;
+                font-size: 12px;
+            }
+            
+            .section-title {
+                font-size: 22px;
+                margin: 20px 0 10px;
+            }
+            
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            
+            .product-image-container {
+                height: 120px;
+                padding: 10px;
+            }
+            
+            .product-info {
+                padding: 12px;
+            }
+            
+            .product-title {
+                font-size: 14px;
+            }
+            
+            .product-price {
+                font-size: 15px;
+                margin-bottom: 12px;
+            }
+            
+            .add-to-cart {
+                padding: 8px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
 
 <body>
     <header>
-        <div class="knopki">
-            <div class="logo"><a href="/glavnaya/glavnaya.html"><img src="freepik__background__29318 2.png" alt=""></a>
-            </div>
-            <div class="cataloge1"><a href="/cataloge/cataloge.html" class="cataloge">Каталог</a></div>
-            <div class="zakaz1"><a href="/zakaz/zakaz.html" class="zakaz">Заказы</a></div>
-            <div class="profile1"><a href="/profile/profile.html" class="profile">Профиль</a></div>
-            <div class="vhod1"><a href="/vhod/vhod.html" class="vhod">Войти</a></div>
+        <div class="logo">
+            <a href="/glavnaya/glavnaya.html">
+                <img src="freepik__background__29318 2.png" alt="TechLogo">
+            </a>
+        </div>
+        <div class="nav-buttons">
+            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="/zakaz/zakaz.html" class="nav-button">Корзина</a>
+            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
         </div>
     </header>
     <main>
-        <div class="chasto">
-            <p>Часто покупают</p>
+        <h1 class="section-title">Часто покупают</h1>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="apple_iphone_16_pro_128_gb_titanovyj_chernyj_500x500_Photoroom_1.png" alt="iPhone 16 Pro Max" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">IPHONE 16 PRO MAX</p>
+                    <p class="product-price">110 900 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="Xiaomi-15-Ultra-Photoroom 2.png" alt="Xiaomi 15 Ultra" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">XIAOMI 15 ULTRA</p>
+                    <p class="product-price">159 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="images-Photoroom 1.png" alt="Vivo X200 Pro Mini" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">VIVO X200 PRO MINI</p>
+                    <p class="product-price">47 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="oneplus-13-12-256gb-5g-black-global-1-Photoroom 1.png" alt="OnePlus 13" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">ONEPLUS 13</p>
+                    <p class="product-price">79 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="realme-14-pro-plus-1_X1HdyCv-Photoroom 1.png" alt="Realme 14 Pro+" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">REALME 14 PRO+</p>
+                    <p class="product-price">39 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="PC_S25_PLUS_ICY_BLUE_1-Photoroom 1.png" alt="Samsung S25" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">SAMSUNG S25</p>
+                    <p class="product-price">114 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
         </div>
 
-        <div class="phones">
-            <div class="iphone">
-                <img src="apple_iphone_16_pro_128_gb_titanovyj_chernyj_500x500_Photoroom_1.png" alt="">
-                <p class="p11">IPHONE 16 PRO MAX</p>
-                <p class="p1">110 900 руб</p>
-                <button onclick="addToBasket(this)">Добавить в корзину</button>
-            </div>
-            <div class="xiaomi">
-                <img src="Xiaomi-15-Ultra-Photoroom 2.png" alt="">
-                <p class="p12">XIAOMI 15 ULTRA</p>
-                <p class="p2">159 990 руб</p>
-                <button onclick="addToBasket(this)">Добавить в корзину</button>
-            </div>
-            <div class="vivo">
-                <img src="images-Photoroom 1.png" alt="">
-                <p class="p13">VIVO x200 PRO MINI</p>
-                <p class="p3">47 990 руб</p>
-                <button onclick="addToBasket(this)">Добавить в корзину</button>
-            </div>
-            <div class="oneplus">
-                <img src="oneplus-13-12-256gb-5g-black-global-1-Photoroom 1.png" alt="">
-                <p class="p14">ONEPLUS 13</p>
-                <p class="p4">79 990 руб</p>
-                <button onclick="addToBasket(this)">Добавить в корзину</button>
-            </div>
-            <div class="realme">
-                <img src="realme-14-pro-plus-1_X1HdyCv-Photoroom 1.png" alt="">
-                <p class="p15">REALME 14 PRO+</p>
-                <p class="p5">39 990 руб</p>
-                <button onclick="addToBasket(this)">Добавить в корзину</button>
-            </div>
-            <div class="samsung">
-                <img src="PC_S25_PLUS_ICY_BLUE_1-Photoroom 1.png" alt="">
-                <p class="p16">SAMSUNG S25</p>
-                <p class="p6">114 990 руб</p>
-                <button onclick="addToBasket(this)">Добавить в корзину</button>
-            </div>
-        </div>
-        <div class="acsesuari">
-            <p class="asc1">Аксессуары</p>
-            <div class="buds">
-                <div class="airpodsmax">
-                    <img src="jnymbax8o477ly0sv5iuutsfasogffzt-Photoroom 1.png" alt="">
-                    <p class="buds1">AIRPODSMAX</p>
-                    <p class="buds11">59 990 руб
-                    </p>
-                    <button onclick="addToBasket(this)">Добавить <br> в корзину</button>
+        <h1 class="section-title">Аксессуары</h1>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="jnymbax8o477ly0sv5iuutsfasogffzt-Photoroom 1.png" alt="AirPods Max" class="product-image">
                 </div>
-                <div class="airpods3">
-                    <img src="ipodtn1xsdl2h4nsande3x1614znw4g5-Photoroom 1.png" alt="">
-                    <p class="buds2">AIRPODS 3</p>
-                    <p class="buds12">13 990 руб</p>
-                    <button onclick="addToBasket(this)">Добавить <br> в корзину</button>
+                <div class="product-info">
+                    <p class="product-title">AIRPODS MAX</p>
+                    <p class="product-price">59 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
                 </div>
-                <div class="jbl">
-                    <img src="11-Photoroom 1.png" alt="">
-                    <p class="buds3">JBL TUNE 100 </p>
-                    <p class="buds13">5 990 руб</p>
-                    <button onclick="addToBasket(this)">Добавить <br> в корзину</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="ipodtn1xsdl2h4nsande3x1614znw4g5-Photoroom 1.png" alt="AirPods 3" class="product-image">
                 </div>
-                <div class="samsungbuds">
-                    <img src="1vqvjkcmhgkd77rnchx9nsd3vom40ige-Photoroom 1.png" alt="">
-                    <p class="buds4">BUDS 3</p>
-                    <p class="buds14">19 990 руб</p>
-                    <button onclick="addToBasket(this)">Добавить <br> в корзину</button>
+                <div class="product-info">
+                    <p class="product-title">AIRPODS 3</p>
+                    <p class="product-price">13 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
                 </div>
-                <div class="sony">
-                    <img src="sony_wh1000xm5_beige_silver-Photoroom 2.png" alt="">
-                    <p class="buds5">SONY WH-1000</p>
-                    <p class="buds15">29 990 руб </p>
-                    <button onclick="addToBasket(this)">Добавить <br> в корзину</button>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="11-Photoroom 1.png" alt="JBL Tune 100" class="product-image">
                 </div>
-                <div class="oneplusbuds">
-                    <img src="z2k6ja0eobn8ew6ln4zwrxt151gb89p7-Photoroom 1.png" alt="">
-                    <p class="buds6">ONEPLUS BUDS</p>
-                    <p class="buds16">4 990 руб</p>
-                    <button onclick="addToBasket(this)">Добавить <br> в корзину</button>
+                <div class="product-info">
+                    <p class="product-title">JBL TUNE 100</p>
+                    <p class="product-price">5 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="1vqvjkcmhgkd77rnchx9nsd3vom40ige-Photoroom 1.png" alt="Samsung Buds 3" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">BUDS 3</p>
+                    <p class="product-price">19 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="sony_wh1000xm5_beige_silver-Photoroom 2.png" alt="Sony WH-1000" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">SONY WH-1000</p>
+                    <p class="product-price">29 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-image-container">
+                    <img src="z2k6ja0eobn8ew6ln4zwrxt151gb89p7-Photoroom 1.png" alt="OnePlus Buds" class="product-image">
+                </div>
+                <div class="product-info">
+                    <p class="product-title">ONEPLUS BUDS</p>
+                    <p class="product-price">4 990 ₽</p>
+                    <button class="add-to-cart" onclick="addToBasket(this)">В корзину</button>
                 </div>
             </div>
         </div>
     </main>
     <footer>
-
-
-        <div class="footer1">
-            <p>История компании TechLogo
-
-                TechLogo — это современный ритейлер электроники, который уже более 10 лет радует клиентов качественными
-                гаджетами по доступным ценам. Компания была основана в 2013 году с целью сделать передовые технологии
-                доступными для каждого. Начиная с небольшого магазина в крупном торговом центре, TechLogo быстро
-                завоевала доверие покупателей благодаря широкому ассортименту и отличному сервису.
-
-                С самого начала TechLogo сосредоточилась на продаже смартфонов и наушников от ведущих мировых брендов,
-                таких как Apple, Samsung, Xiaomi, Huawei и других. Команда компании тщательно отбирает продукцию,
-                предлагая только проверенные и популярные модели. Благодаря прямым поставкам от производителей, TechLogo
-                удаётся сохранять конкурентоспособные цены, не жертвуя качеством.
-
-                Сегодня TechLogo — это не просто магазин, а целая сеть, включающая онлайн-платформу и несколько
-                розничных точек в крупных городах. Компания активно развивает клиентоориентированный подход: быстрая
-                доставка, удобный возврат и профессиональные консультации стали её визитной карточкой.
-
-                TechLogo продолжает расширять ассортимент, следить за трендами и внедрять новые технологии в
-                обслуживании. Её миссия — делать высокотехнологичные устройства доступными, помогая людям оставаться на
-                связи и наслаждаться качественным звуком без переплат. В будущем компания планирует выход на
-                международный рынок, чтобы ещё больше клиентов могли оценить её преимущества.</p>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <p>TechMobile - ведущий поставщик мобильной электроники с 2015 года. Мы предлагаем только оригинальную технику с официальной гарантией.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: +7 (495) 123-45-67</li>
+                    <li>Email: info@techmobile.ru</li>
+                    <li>Адрес: Москва, ул. Технологическая, 15</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Полезные ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="/warranty/warranty.html">Гарантия</a></li>
+                    <li><a href="/delivery/delivery.html">Доставка</a></li>
+                    <li><a href="/trade-in/trade-in.html">Trade-in</a></li>
+                </ul>
+            </div>
         </div>
     </footer>
 
-
-    <div class="basket">
-
-
-    </div>
-
     <script>
-
-        const basket = []
-        const basketView = document.querySelector('.basket')
-
+        const basket = [];
+        
         function addToBasket(button) {
-            const imgUrl = button.previousElementSibling.previousElementSibling.previousElementSibling.src;
-            const title = button.previousElementSibling.previousElementSibling.innerHTML;
-            const cost = button.previousElementSibling.innerHTML;
-            basket.push(
-                {
-                    title: title,
-                    imgUrl: imgUrl,
-                    cost: cost
-                }
-            )
-            console.table(basket);
-            localStorage.setItem("basket", JSON.stringify(basket))
-            updateBasketView()
+            const productCard = button.closest('.product-card');
+            const imgUrl = productCard.querySelector('.product-image').src;
+            const title = productCard.querySelector('.product-title').textContent;
+            const price = productCard.querySelector('.product-price').textContent;
+            
+            const product = {
+                title: title,
+                imgUrl: imgUrl,
+                price: price
+            };
+            
+            basket.push(product);
+            localStorage.setItem('basket', JSON.stringify(basket));
+            
+            // Визуальная обратная связь
+            button.textContent = 'Добавлено!';
+            button.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+            
+            setTimeout(() => {
+                button.textContent = 'В корзину';
+                button.style.background = 'linear-gradient(to right, #4e54c8, #8f94fb)';
+            }, 1500);
+            
+            console.log('Товар добавлен в корзину:', product);
+            // Проверка состояния авторизации при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+        updateAuthState();
+    });
+
+    // Обновление состояния кнопок
+    function updateAuthState() {
+        const isLoggedIn = !!sessionStorage.getItem('currentUser');
+        document.getElementById('profileBtn').style.display = isLoggedIn ? 'block' : 'none';
+        document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'block';
+    }
+
+    // Функция выхода
+    function logout() {
+        sessionStorage.removeItem('currentUser');
+        updateAuthState();
+        window.location.href = '/glavnaya/glavnaya.html'; // Перенаправление на главную
+    }
         }
-
-
-        // function updateBasketView(){
-        //     basketView.innerHTML = ""
-        //     for (let product of basket){
-        //         basketView.innerHTML+=`
-        //             <div>
-        //                 <img src=${product.imgUrl}/>
-        //                 <p>${product.title}</p>
-        //                 <p>${product.cost}</p>
-        //             </div>
-        //         `
-        //     }
-        // }
     </script>
-
-
-
 </body>
 
 </html>
