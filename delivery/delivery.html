@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechMobile - Доставка</title>
+    <style>
+        /* Все основные стили из предыдущих страниц */
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        background-color: black;
+        font-family: 'Montserrat', sans-serif;
+        color: white;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    /* Header styles */
+    header {
+        padding: 15px 5%;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #121212;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .logo {
+        margin-right: 20px;
+    }
+
+    .logo img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        transition: transform 0.3s;
+    }
+
+    .nav-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+    }
+
+    .nav-button {
+        min-width: 120px;
+        height: 45px;
+        background-color: #212121;
+        border-radius: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        transition: all 0.3s;
+        padding: 0 20px !important;
+        line-height: 45px;
+        text-align: center;
+        white-space: nowrap;
+    }
+
+    .nav-button:hover {
+        background-color: #333;
+        transform: translateY(-2px);
+    }
+
+    /* Main content styles */
+    main {
+        flex: 1;
+        padding: 30px 5%;
+    }
+
+    .section-title {
+        font-size: 28px;
+        margin: 30px 0 20px;
+        font-weight: 600;
+        position: relative;
+        padding-left: 15px;
+    }
+
+    .section-title::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 5px;
+        bottom: 5px;
+        width: 4px;
+        background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+        border-radius: 2px;
+    }
+
+    .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 25px;
+        margin-top: 20px;
+    }
+
+    .product-card {
+        background: #1a1a1a;
+        border-radius: 12px;
+        overflow: hidden;
+        transition: transform 0.3s, box-shadow 0.3s;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    }
+
+    .product-image-container {
+        width: 100%;
+        height: 180px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 15px;
+        background: #252525;
+    }
+
+    .product-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+    }
+
+    .product-info {
+        padding: 15px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .product-title {
+        font-size: 15px;
+        margin-bottom: 8px;
+        font-weight: 500;
+        line-height: 1.3;
+    }
+
+    .product-price {
+        font-size: 16px;
+        margin-bottom: 15px;
+        color: #f1f1f1;
+        font-weight: 600;
+    }
+
+    .add-to-cart {
+        background: linear-gradient(to right, #4e54c8, #8f94fb);
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 6px;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s;
+        margin-top: auto;
+        font-weight: 500;
+    }
+
+    .add-to-cart:hover {
+        background: linear-gradient(to right, #3a3f9e, #7b80e8);
+        transform: translateY(-2px);
+    }
+
+        
+        .delivery-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 30px;
+            background: #1a1a1a;
+            border-radius: 15px;
+        }
+
+        .delivery-section {
+            margin-bottom: 40px;
+        }
+
+        .delivery-section h2 {
+            color: #8f94fb;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+
+        .delivery-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .delivery-step {
+            background: #252525;
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 40px;
+            height: 40px;
+            background: #4e54c8;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 15px;
+            font-weight: 600;
+        }
+
+        .delivery-map {
+            height: 400px;
+            background: #252525;
+            border-radius: 12px;
+            margin: 30px 0;
+        }
+
+        .delivery-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .delivery-table th,
+        .delivery-table td {
+            padding: 15px;
+            border: 1px solid #333;
+            text-align: left;
+        }
+
+        @media (max-width: 768px) {
+            .delivery-content {
+                padding: 20px;
+            }
+            
+            .delivery-steps {
+                grid-template-columns: 1fr;
+            }
+            
+            .delivery-map {
+                height: 300px;
+            }
+            
+            .delivery-table {
+                display: block;
+                overflow-x: auto;
+            }
+        }
+        /* Footer styles */
+        footer {
+            padding: 30px 5%;
+            background: #121212;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #8f94fb;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #8f94fb;
+        }
+        .delivery-map {
+        height: 500px;
+        width: 100%;
+        border-radius: 12px;
+        overflow: hidden;
+        margin: 30px 0;
+        }
+
+@media (max-width: 768px) {
+    .delivery-map {
+        height: 300px;
+    }
+}
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <a href="/glavnaya/glavnaya.html">
+                <img src="freepik__background__29318 2.png" alt="TechLogo">
+            </a>
+        </div>
+        <div class="nav-buttons">
+            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="/zakaz/zakaz.html" class="nav-button">Корзина</a>
+            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="delivery-content">
+            <h1 class="section-title">Условия доставки</h1>
+
+            <div class="delivery-section">
+                <h2>Способы доставки</h2>
+                <div class="delivery-steps">
+                    <div class="delivery-step">
+                        <div class="step-number">1</div>
+                        <h3>Курьерская доставка</h3>
+                        <p>Быстрая доставка по Москве в течение 2 часов</p>
+                    </div>
+                    <div class="delivery-step">
+                        <div class="step-number">2</div>
+                        <h3>Самовывоз</h3>
+                        <p>40 пунктов выдачи в Москве и области</p>
+                    </div>
+                    <div class="delivery-step">
+                        <div class="step-number">3</div>
+                        <h3>Почта России</h3>
+                        <p>Доставка в любой город РФ за 5-10 дней</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="delivery-section">
+                <h2>Сроки и стоимость</h2>
+                <table class="delivery-table">
+                    <thead>
+                        <tr>
+                            <th>Способ доставки</th>
+                            <th>Срок</th>
+                            <th>Стоимость</th>
+                            <th>Условия</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Курьерская (Москва)</td>
+                            <td>2-4 часа</td>
+                            <td>Бесплатно</td>
+                            <td>При заказе от 10 000₽</td>
+                        </tr>
+                        <tr>
+                            <td>Самовывоз</td>
+                            <td>1-2 дня</td>
+                            <td>Бесплатно</td>
+                            <td>Подготовка заказа 1 час</td>
+                        </tr>
+                        <tr>
+                            <td>Почта России</td>
+                            <td>5-10 дней</td>
+                            <td>490₽</td>
+                            <td>Страховка включена</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="delivery-section">
+                <h2>Зона доставки</h2>
+                <div class="delivery-map">
+                    <!-- Здесь можно вставить карту -->
+                    <div class="delivery-map" id="map"></div>
+                </div>
+            </div>
+
+            <div class="contact-support">
+                <h2>Нужна помощь?</h2>
+                <p>Телефон: <a href="tel:+74951234567">+7 (495) 123-45-67</a></p>
+                <p>Email: <a href="mailto:delivery@techmobile.ru">delivery@techmobile.ru</a></p>
+                <a href="/support-form.html" class="cta-button">Задать вопрос</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <p>TechMobile - ведущий поставщик мобильной электроники с 2015 года. Мы предлагаем только оригинальную технику с официальной гарантией.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: +7 (495) 123-45-67</li>
+                    <li>Email: info@techmobile.ru</li>
+                    <li>Адрес: Москва, ул. Технологическая, 15</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Полезные ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="/warranty/warranty.html">Гарантия</a></li>
+                    <li><a href="/delivery/delivery.html">Доставка</a></li>
+                    <li><a href="/trade-in/trade-in.html">Trade-in</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=cc2d23ba-39a9-44b3-b41d-7bb499121ebc&lang=ru_RU"></script>
+    <script>
+        // Инициализация карты
+        ymaps.ready(init);
+        
+        function init() {
+            const map = new ymaps.Map('map', {
+                center: [55.751574, 37.573856], // Координаты центра (Москва)
+                zoom: 10,
+                controls: ['zoomControl']
+            });
+    
+            // Пункты выдачи
+            const points = [
+                {
+                    coords: [55.02936306966215,82.92732849999989],
+                    title: 'ТЦ "Панорама"',
+                    address: 'Депутатская ул., 48',
+                    time: '10:00-22:00'
+                },
+                {
+                    coords: [55.03517806967707,82.91451849999997],
+                    title: 'Яндекс Доставка',
+                    address: 'Советская ул., 65',
+                    time: '09:00-21:00'
+                },
+                {
+                    coords: [555.05129306965942,82.92060949999991],
+                    title: 'Яндекс Доставка',
+                    address: 'инейная ул., 114, корп. 2',
+                    time: '11:00-23:00'
+                }
+            ];
+    
+            // Добавляем метки
+            points.forEach(point => {
+                const placemark = new ymaps.Placemark(
+                    point.coords,
+                    {
+                        balloonContent: `
+                            <strong>${point.title}</strong><br>
+                            ${point.address}<br>
+                            Часы работы: ${point.time}
+                        `
+                    },
+                    {
+                        preset: 'islands#blueShoppingIcon'
+                    }
+                );
+                
+                map.geoObjects.add(placemark);
+            });
+            
+            // Адаптация под мобильные
+            if (window.innerWidth <= 768) {
+                map.behaviors.disable('drag');
+                map.setZoom(11);
+            }
+        }
+    </script>
+    <script>
+        // Общий скрипт для авторизации
+        document.addEventListener('DOMContentLoaded', () => {
+            updateAuthState();
+        });
+
+        function updateAuthState() {
+            const isLoggedIn = !!sessionStorage.getItem('currentUser');
+            document.getElementById('profileBtn').style.display = isLoggedIn ? 'block' : 'none';
+            document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'block';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            updateAuthState();
+            window.location.href = '/glavnaya/glavnaya.html';
+        }
+    </script>
+</body>
+</html>
