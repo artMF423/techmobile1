@@ -1,359 +1,577 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Корзина</title>
+    <title>Корзина - TechLogo</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-        *{
+
+        :root {
+            --primary-bg: #121212;
+            --secondary-bg: #1a1a1a;
+            --card-bg: #252525;
+            --accent-gradient: linear-gradient(to right, #4e54c8, #8f94fb);
+            --accent-gradient-hover: linear-gradient(to right, #3a3f9e, #7b80e8);
+            --remove-btn: #5a1a1a;
+            --remove-btn-hover: #6e1f1f;
+            --text-primary: #ffffff;
+            --text-secondary: #f1f1f1;
+            --text-muted: #999999;
+            --border-radius: 12px;
+            --box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
-        body{
+
+        body {
             background-color: black;
-            font-family: Montserrat;
-            color: white;
-        }
-        .knopki{
-            display: block;
-        }
-        .logo{
-            position: relative;
-            left: 29px;
-            top: 10px;
-        }
-        .cataloge{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 40px;
-            top: 22px;
-        }
-        .cataloge1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 331px;
-            bottom: 60px;
-        }
-        .zakaz{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-        .zakaz1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 532px;
-            bottom: 129px;
-        }
-        .profile{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 36px;
-            top: 22px;
-        }
-        .profile1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 720px;
-            bottom: 198px;
-        }
-        .vhod{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-        .vhod1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 1225px;
-            bottom: 269px;
-        }
-        .brends{
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-primary);
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
+            line-height: 1.6;
         }
-        .brendsp{
-            font-size: 36px;
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header styles */
+        header {
+            padding: 15px 5%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #121212;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .logo {
+            width: px;
+            margin-right: 20px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav-button {
+            min-width: 120px;
+            height: 45px;
+            background-color: #212121;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 0 15px;
+            line-height: 45px !important;    
+            text-align: center;              
+            padding: 0 20px !important;      
+            white-space: nowrap; 
+        }
+
+        .nav-button:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+            padding: 20px 5%;
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-size: clamp(22px, 5vw, 28px);
+            margin: 20px 0;
+            font-weight: 600;
             position: relative;
-            left: 60px;
-            bottom: 240px;
+            padding-left: 15px;
         }
-        
-        
-        .basket {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 0 20px;
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 4px;
+            background: var(--accent-gradient);
+            border-radius: 2px;
         }
-        
-        .basket-title {
-            font-size: 36px;
-            margin-bottom: 30px;
-            text-align: center;
+
+        /* Basket styles */
+        .basket-container {
+            width: 100%;
         }
-        
-        .basket-empty {
-            text-align: center;
-            font-size: 24px;
-            color: #555;
-            margin-top: 50px;
-        }
-        
+
         .basket-items {
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 15px;
+            margin-top: 20px;
         }
-        
+
         .basket-item {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            background: var(--secondary-bg);
+            border-radius: var(--border-radius);
+            padding: 15px;
+            transition: var(--transition);
+            gap: 15px;
+        }
+
+        .basket-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
+        }
+
+        .basket-item-image-container {
+            width: 80px;
+            height: 80px;
+            background: var(--card-bg);
+            border-radius: 8px;
             display: flex;
             align-items: center;
-            background-color: #212121;
-            border-radius: 15px;
-            padding: 20px;
-            position: relative;
+            justify-content: center;
+            padding: 10px;
         }
-        
-        .basket-item-img {
-            width: 120px;
-            height: 120px;
+
+        .basket-item-image {
+            max-width: 100%;
+            max-height: 100%;
             object-fit: contain;
-            margin-right: 30px;
-            border-radius: 10px;
         }
-        
+
         .basket-item-info {
-            flex-grow: 1;
+            overflow: hidden;
         }
-        
+
         .basket-item-title {
-            font-size: 20px;
-            margin-bottom: 10px;
+            font-size: clamp(14px, 4vw, 16px);
+            font-weight: 500;
+            margin-bottom: 5px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        
+
         .basket-item-price {
-            font-size: 18px;
-            color: #aaa;
+            font-size: clamp(14px, 4vw, 16px);
+            color: var(--text-secondary);
+            font-weight: 600;
         }
-        
+
         .basket-item-remove {
-            background-color: #5a1a1a;
+            background: var(--remove-btn);
             color: white;
             border: none;
-            border-radius: 10px;
-            padding: 10px 20px;
-            font-family: Montserrat;
-            font-size: 16px;
+            padding: 8px 15px;
+            border-radius: 6px;
+            font-size: clamp(12px, 3vw, 14px);
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: var(--transition);
+            font-weight: 500;
+            white-space: nowrap;
         }
-        
+
         .basket-item-remove:hover {
-            background-color: #6e1f1f;
+            background: var(--remove-btn-hover);
+            transform: translateY(-2px);
         }
-        
-        .basket-total {
-            margin-top: 40px;
-            text-align: right;
-            font-size: 24px;
-            padding: 20px;
-            background-color: #212121;
-            border-radius: 15px;
-        }
-        
-        .basket-actions {
-            display: flex;
-            justify-content: flex-end;
+
+        .basket-summary {
             margin-top: 30px;
+            background: var(--secondary-bg);
+            border-radius: var(--border-radius);
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
             gap: 20px;
         }
-        
+
+        .basket-total {
+            font-size: clamp(16px, 4vw, 20px);
+            font-weight: 600;
+        }
+
+        .basket-actions {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
         .basket-btn {
-            padding: 15px 30px;
+            padding: 10px 20px;
             border: none;
-            border-radius: 10px;
-            font-family: Montserrat;
-            font-size: 18px;
+            border-radius: 6px;
+            font-size: clamp(13px, 3vw, 15px);
             cursor: pointer;
-            transition: all 0.3s;
+            transition: var(--transition);
+            font-weight: 500;
+            flex: 1;
+            min-width: 120px;
         }
-        
+
         .basket-btn-clear {
-            background-color: #5a1a1a;
+            background: var(--remove-btn);
             color: white;
         }
-        
+
         .basket-btn-clear:hover {
-            background-color: #6e1f1f;
+            background: var(--remove-btn-hover);
+            transform: translateY(-2px);
         }
-        
+
         .basket-btn-checkout {
-            background-color: #333;
+            background: var(--accent-gradient);
             color: white;
         }
-        
+
         .basket-btn-checkout:hover {
-            background-color: #444;
+            background: var(--accent-gradient-hover);
+            transform: translateY(-2px);
         }
-        
-        
+
+        .basket-empty {
+            text-align: center;
+            font-size: clamp(16px, 4vw, 18px);
+            color: var(--text-muted);
+            margin-top: 40px;
+            padding: 30px;
+            background: var(--secondary-bg);
+            border-radius: var(--border-radius);
+        }
+
+        /* Footer styles */
+        footer {
+            padding: 30px 5%;
+            background: #121212;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #8f94fb;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #8f94fb;
+        }
+        /* Media queries for responsive design */
         @media (max-width: 768px) {
+            header {
+                padding: 15px;
+            }
+            
             .basket-item {
+                grid-template-columns: auto 1fr;
+                grid-template-rows: auto auto;
+            }
+            
+            .basket-item-remove {
+                grid-column: 1 / 3;
+                justify-self: end;
+            }
+            
+            .basket-summary {
                 flex-direction: column;
                 text-align: center;
             }
             
-            .basket-item-img {
-                margin-right: 0;
-                margin-bottom: 15px;
-            }
-            
-            .basket-item-remove {
-                margin-top: 15px;
-            }
-            
             .basket-actions {
-                flex-direction: column;
+                width: 100%;
+            }
+            
+            .basket-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .nav-buttons {
+                gap: 8px;
+            }
+            
+            .nav-button {
+                min-width: calc(50% - 4px);
+                height: 36px;
+            }
+            
+            .basket-item {
+                padding: 12px;
+                gap: 10px;
+            }
+            
+            .basket-item-image-container {
+                width: 70px;
+                height: 70px;
+            }
+            
+            .basket-empty {
+                padding: 20px;
+                margin-top: 30px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-    <div class="knopki">
-        <div class="logo"><a href="/glavnaya/glavnaya.html"><img src="freepik__background__29318 2 (1) (3).png" alt=""></a></div>
-        <div class="cataloge1"><a href="/cataloge/cataloge.html" class="cataloge">Каталог</a></div>
-        <div class="zakaz1"><a href="/zakaz/zakaz.html" class="zakaz">Заказы</a></div>
-        <div class="profile1"><a href="/profile/profile.html" class="profile">Профиль</a></div>
-        <div class="vhod1"><a href="/vhod/vhod.html" class="vhod">Войти</a></div>
-    </div>
+        <div class="logo">
+            <a href="/glavnaya/glavnaya.html">
+                <img src="freepik__background__29318 2 (1) (3).png" alt="TechLogo">
+            </a>
+        </div>
+        <div class="nav-buttons">
+            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="/zakaz/zakaz.html" class="nav-button">Корзина</a>
+            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
+        </div>
     </header>
     
     <main>
-        <section class="basket">
-            <h1 class="basket-title">Ваша корзина</h1>
+        <div class="basket-container">
+            <h1 class="section-title">Ваша корзина</h1>
+            
             <div class="basket-items" id="basketItems">
-                
+                <!-- Товары будут добавляться сюда -->
             </div>
-            <div class="basket-total" id="basketTotal">
-                Итого: 0 руб
+            
+            <div class="basket-summary" id="basketSummary" style="display: none;">
+                <div class="basket-total" id="basketTotal">Итого: 0 ₽</div>
+                <div class="basket-actions">
+                    <button class="basket-btn basket-btn-clear" id="clearBasket">Очистить корзину</button>
+                    <button class="basket-btn basket-btn-checkout" id="checkout">Оформить заказ</button>
+                </div>
             </div>
-            <div class="basket-actions">
-                <button class="basket-btn basket-btn-clear" id="clearBasket">Очистить корзину</button>
-                <button class="basket-btn basket-btn-checkout" id="checkout">Оформить заказ</button>
-            </div>
-        </section>
+            
+            <div class="basket-empty" id="emptyBasket">Ваша корзина пуста</div>
+        </div>
     </main>
+    
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <p>TechMobile - ведущий поставщик мобильной электроники с 2015 года. Мы предлагаем только оригинальную технику с официальной гарантией.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: +7 (495) 123-45-67</li>
+                    <li>Email: info@techmobile.ru</li>
+                    <li>Адрес: Москва, ул. Технологическая, 15</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Полезные ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="/warranty/warranty.html">Гарантия</a></li>
+                    <li><a href="/delivery/delivery.html">Доставка</a></li>
+                    <li><a href="/trade-in/trade-in.html">Trade-in</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 
     <script>
-        let basket = [];
-        const basketItemsContainer = document.getElementById('basketItems');
-        const basketTotal = document.getElementById('basketTotal');
-        const clearBasketBtn = document.getElementById('clearBasket');
-        const checkoutBtn = document.getElementById('checkout');
-
-        
-        window.addEventListener('DOMContentLoaded', () => {
-            const savedBasket = localStorage.getItem('basket');
-            if (savedBasket) {
-                basket = JSON.parse(savedBasket);
+        document.addEventListener('DOMContentLoaded', function() {
+            const basketItemsContainer = document.getElementById('basketItems');
+            const basketSummary = document.getElementById('basketSummary');
+            const emptyBasket = document.getElementById('emptyBasket');
+            const basketTotal = document.getElementById('basketTotal');
+            const clearBasketBtn = document.getElementById('clearBasket');
+            const checkoutBtn = document.getElementById('checkout');
+            
+            // Загрузка корзины из localStorage
+            let basket = JSON.parse(localStorage.getItem('basket')) || [];
+            
+            // Обновляем отображение корзины
+            updateBasketView();
+            
+            // Функция обновления отображения корзины
+            function updateBasketView() {
+                basketItemsContainer.innerHTML = '';
+                
+                if (basket.length === 0) {
+                    basketSummary.style.display = 'none';
+                    emptyBasket.style.display = 'block';
+                    return;
+                }
+                
+                emptyBasket.style.display = 'none';
+                basketSummary.style.display = 'flex';
+                
+                let total = 0;
+                
+                basket.forEach((item, index) => {
+                    const price = parseInt(item.price.replace(/\D/g, ''));
+                    total += price;
+                    
+                    const itemElement = document.createElement('div');
+                    itemElement.className = 'basket-item';
+                    itemElement.innerHTML = `
+                        <div class="basket-item-image-container">
+                            <img src="${item.imgUrl}" alt="${item.title}" class="basket-item-image">
+                        </div>
+                        <div class="basket-item-info">
+                            <h3 class="basket-item-title">${item.title}</h3>
+                            <p class="basket-item-price">${item.price}</p>
+                        </div>
+                        <button class="basket-item-remove" data-index="${index}">Удалить</button>
+                    `;
+                    
+                    basketItemsContainer.appendChild(itemElement);
+                });
+                
+                basketTotal.textContent = `Итого: ${total.toLocaleString('ru-RU')} ₽`;
+                
+                // Добавляем обработчики событий для кнопок удаления
+                document.querySelectorAll('.basket-item-remove').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const index = this.getAttribute('data-index');
+                        removeFromBasket(index);
+                    });
+                });
+            }
+            
+            // Функция удаления товара из корзины
+            function removeFromBasket(index) {
+                basket.splice(index, 1);
+                saveBasket();
                 updateBasketView();
             }
-        });
-
-        
-        function updateBasketView() {
-            basketItemsContainer.innerHTML = '';
             
-            if (basket.length === 0) {
-                basketItemsContainer.innerHTML = '<p class="basket-empty">Ваша корзина пуста</p>';
-                basketTotal.textContent = 'Итого: 0 руб';
-                return;
-            }
-            
-            let total = 0;
-            
-            basket.forEach((product, index) => {
-               
-                const price = parseInt(product.cost.replace(/\D/g, ''));
-                total += price;
+            // Очистка корзины
+            clearBasketBtn.addEventListener('click', function() {
+                if (basket.length === 0) return;
                 
-                const itemElement = document.createElement('div');
-                itemElement.className = 'basket-item';
-                itemElement.innerHTML = `
-                    <img src="${product.imgUrl}" alt="${product.title}" class="basket-item-img">
-                    <div class="basket-item-info">
-                        <h3 class="basket-item-title">${product.title}</h3>
-                        <p class="basket-item-price">${product.cost}</p>
-                    </div>
-                    <button class="basket-item-remove" data-index="${index}">Удалить</button>
-                `;
-                
-                basketItemsContainer.appendChild(itemElement);
+                if (confirm('Вы действительно хотите очистить корзину?')) {
+                    basket = [];
+                    saveBasket();
+                    updateBasketView();
+                }
             });
             
-            
-            basketTotal.textContent = `Итого: ${total.toLocaleString('ru-RU')} руб`;
-            
-            
-            document.querySelectorAll('.basket-item-remove').forEach(button => {
-                button.addEventListener('click', (e) => {
-                    const index = e.target.getAttribute('data-index');
-                    removeFromBasket(index);
-                });
+            // Оформление заказа
+            checkoutBtn.addEventListener('click', function() {
+                if (basket.length === 0) {
+                    showAlert('Корзина пуста!');
+                    return;
+                }
+                
+                const total = basketTotal.textContent;
+                if (confirm(`Оформить заказ на сумму ${total}?`)) {
+                    showAlert('Заказ оформлен! Спасибо за покупку!', 'success');
+                    
+                    // Можно добавить отправку данных на сервер
+                    // sendOrderToServer(basket);
+                    
+                    basket = [];
+                    saveBasket();
+                    updateBasketView();
+                }
             });
-        }
-
-        
-        function removeFromBasket(index) {
-            basket.splice(index, 1);
-            localStorage.setItem('basket', JSON.stringify(basket));
-            updateBasketView();
-        }
-
-        
-        clearBasketBtn.addEventListener('click', () => {
-            basket = [];
-            localStorage.setItem('basket', JSON.stringify(basket));
-            updateBasketView();
-        });
-
-       
-        checkoutBtn.addEventListener('click', () => {
-            if (basket.length === 0) {
-                alert('Корзина пуста!');
-                return;
+            
+            // Сохранение корзины в localStorage
+            function saveBasket() {
+                localStorage.setItem('basket', JSON.stringify(basket));
             }
             
-         
-            alert('Заказ оформлен! Спасибо за покупку!');
-            basket = [];
-            localStorage.setItem('basket', JSON.stringify(basket));
-            updateBasketView();
+            // Показать уведомление
+            function showAlert(message, type = 'error') {
+                const alert = document.createElement('div');
+                alert.textContent = message;
+                alert.style.position = 'fixed';
+                alert.style.top = '20px';
+                alert.style.left = '50%';
+                alert.style.transform = 'translateX(-50%)';
+                alert.style.padding = '15px 25px';
+                alert.style.borderRadius = '8px';
+                alert.style.zIndex = '1000';
+                alert.style.fontWeight = '500';
+                alert.style.boxShadow = '0 4px 12px rgba(0,0,0,0.15)';
+                alert.style.animation = 'fadeIn 0.3s, fadeOut 0.3s 2.7s';
+                
+                if (type === 'success') {
+                    alert.style.background = 'linear-gradient(to right, #4CAF50, #2E7D32)';
+                    alert.style.color = 'white';
+                } else {
+                    alert.style.background = 'linear-gradient(to right, #f44336, #d32f2f)';
+                    alert.style.color = 'white';
+                }
+                
+                document.body.appendChild(alert);
+                
+                setTimeout(() => {
+                    alert.remove();
+                }, 3000);
+            }
         });
+        // Проверка состояния авторизации при загрузке
+    document.addEventListener('DOMContentLoaded', () => {
+        updateAuthState();
+    });
+
+    // Обновление состояния кнопок
+    function updateAuthState() {
+        const isLoggedIn = !!sessionStorage.getItem('currentUser');
+        document.getElementById('profileBtn').style.display = isLoggedIn ? 'block' : 'none';
+        document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'block';
+    }
+
+    // Функция выхода
+    function logout() {
+        sessionStorage.removeItem('currentUser');
+        updateAuthState();
+        window.location.href = '/glavnaya/glavnaya.html'; // Перенаправление на главную
+    }
+        
     </script>
 </body>
 </html>
