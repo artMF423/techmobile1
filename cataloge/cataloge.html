@@ -1,153 +1,324 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>TechMobile - Магазин смартфонов</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-        *{
+
+        * {
             margin: 0;
             padding: 0;
+            box-sizing: border-box;
         }
-        body{
+
+        body {
             background-color: black;
-            font-family: Montserrat;
+            font-family: 'Montserrat', sans-serif;
             color: white;
-        }
-        .knopki{
-            display: block;
-        }
-        .logo{
-            position: relative;
-            left: 29px;
-            top: 10px;
-        }
-        .cataloge{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 40px;
-            top: 22px;
-        }
-        .cataloge1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 331px;
-            bottom: 60px;
-        }
-        .zakaz{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-        .zakaz1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 532px;
-            bottom: 129px;
-        }
-        .profile{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 36px;
-            top: 22px;
-        }
-        .profile1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 720px;
-            bottom: 198px;
-        }
-        .vhod{
-            color: white;
-            font-family: Montserrat;
-            font-size: 20px;
-            position: relative;
-            left: 45px;
-            top: 22px;
-        }
-        .vhod1{
-            width: 168px;
-            height: 69px;
-            background-color: #212121;
-            border-radius: 50px;
-            position: relative;
-            left: 1225px;
-            bottom: 269px;
-        }
-        .brends{
+            min-height: 100vh;
             display: flex;
+            flex-direction: column;
         }
-        .brendsp{
-            font-size: 36px;
-            position: relative;
-            left: 60px;
-            bottom: 240px;
+
+        a {
+            text-decoration: none;
+            color: inherit;
         }
-        .brends1{
+
+        /* Header styles */
+        header {
+            padding: 15px 5%;
             display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #121212;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            width: px;
+            margin-right: 20px;
+        }
+
+        .logo img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        .nav-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: center;
+        }
+
+        .nav-button {
+            min-width: 120px;
+            height: 45px;
+            background-color: #212121;
+            border-radius: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            transition: all 0.3s;
+            padding: 0 15px;
+        }
+
+        .nav-button:hover {
+            background-color: #333;
+            transform: translateY(-2px);
+        }
+
+        /* Main content styles */
+        main {
+            flex: 1;
+            padding: 30px 5%;
+        }
+
+        .section-title {
+            font-size: 28px;
+            margin: 30px 0 20px;
+            font-weight: 600;
             position: relative;
-            right: 70px;
-            bottom: 100px;
+            padding-left: 15px;
         }
-        .samsung{
-            margin-left: 30px;
+
+        .section-title::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 5px;
+            bottom: 5px;
+            width: 4px;
+            background: linear-gradient(to bottom, #4e54c8, #8f94fb);
+            border-radius: 2px;
         }
-        .xiaomi{
-            margin-left: 30px;
+
+        .brands-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
         }
-        .vivo{
-            margin-left: 50px;
+
+        .brand-card {
+            background: #1a1a1a;
+            border-radius: 12px;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.3s;
+            min-height: 120px;
         }
-        .realme{
-            margin-left: 50px;
-            position: relative;
-            top: 35px;
+
+        .brand-card:hover {
+            transform: translateY(-5px);
         }
-        .oneplus{
-            margin-left: 50px;
-            position: relative;
-            top: 28px;
+
+        .brand-logo {
+            max-width: 100%;
+            height: 60px;
+            object-fit: contain;
+        }
+
+        /* Новый раздел с акциями */
+        .promo-banner {
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            border-radius: 12px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .promo-title {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .promo-text {
+            color: #e0e0e0;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Footer styles */
+        footer {
+            padding: 30px 5%;
+            background: #121212;
+            margin-top: 50px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #8f94fb;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 8px;
+        }
+
+        .footer-links a:hover {
+            color: #8f94fb;
+        }
+
+        @media (max-width: 768px) {
+            .brands-grid {
+                grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                gap: 15px;
+            }
+            
+            .promo-banner {
+                padding: 20px;
+            }
+            
+            .promo-title {
+                font-size: 20px;
+            }
+        }
+        .auth-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 40px;
+            background: #1a1a1a;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 20px;
+            background: #252525;
+            border: 2px solid transparent;
+            border-radius: 8px;
+            color: white;
+            font-size: 15px;
+            transition: all 0.3s;
+        }
+
+        .auth-btn {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #4e54c8, #8f94fb);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s;
         }
     </style>
 </head>
+
 <body>
     <header>
-    <div class="knopki">
-        <div class="logo"><a href="/glavnaya/glavnaya.html"><img src="freepik__background__29318 2 (1).png" alt=""></a></div>
-        <div class="cataloge1"><a href="/cataloge/cataloge.html" class="cataloge">Каталог</a></div>
-        <div class="zakaz1"><a href="/zakaz/zakaz.html" class="zakaz">Заказы</a></div>
-        <div class="profile1"><a href="/profile/profile.html" class="profile">Профиль</a></div>
-        <div class="vhod1"><a href="/vhod/vhod.html" class="vhod">Войти</a></div>
-    </div>
+        <div class="logo">
+            <a href="/glavnaya/glavnaya.html">
+                <img src="freepik__background__29318 2 (1).png" alt="TechMobile">
+            </a>
+        </div>
+        <div class="nav-buttons">
+            <a href="/cataloge/cataloge.html" class="nav-button">Каталог</a>
+            <a href="/zakaz/zakaz.html" class="nav-button">Корзина</a>
+            <a href="/profile/profile.html" class="nav-button" id="profileBtn" style="display: none;">Профиль</a>
+            <a href="/vhod/vhod.html" class="nav-button" id="loginBtn">Войти</a>
+        </div>
     </header>
+
     <main>
-        <div class="brends">
-            <p class="brendsp">Бренды</p>
-            <div class="brends1">
-            <div class="apple"><a href="https://www.apple.com/"><img src="image.png" alt=""></a></div>
-            <div class="samsung"><a href="https://www.samsung.com/ru/"><img src="image 1.png" alt=""></a></div>
-            <div class="xiaomi"><a href="https://www.mi.com/ru/"></a><img src="image 3.png" alt=""></a></div>
-            <div class="vivo"><a href="https://ru.vivo.com/"><img src="image 4.png" alt=""></a></div>
-            <div class="realme"><a href="https://www.realme.com/ru/"><img src="image 2.png" alt=""></a></div>
-            <div class="oneplus"><a href="https://oneplus.com.ru/"><img src="image 5.png" alt=""></a></div></div>
+        
+        <section class="promo-banner">
+            <h2 class="promo-title">Специальное предложение!</h2>
+            <p class="promo-text">При покупке любого смартфона получайте беспроводные наушники в подарок. Акция действует до конца месяца.</p>
+        </section>
+
+        <h2 class="section-title">Популярные бренды</h2>
+        
+        <div class="brands-grid">
+            <a href="https://www.apple.com/" class="brand-card">
+                <img src="image.png" alt="Apple" class="brand-logo">
+            </a>
+            <a href="https://www.samsung.com/ru/" class="brand-card">
+                <img src="image 1.png" alt="Samsung" class="brand-logo">
+            </a>
+            <a href="https://www.mi.com/ru/" class="brand-card">
+                <img src="image 3.png" alt="Xiaomi" class="brand-logo">
+            </a>
+            <a href="https://ru.vivo.com/" class="brand-card">
+                <img src="image 4.png" alt="Vivo" class="brand-logo">
+            </a>
+            <a href="https://www.realme.com/ru/" class="brand-card">
+                <img src="image 2.png" alt="Realme" class="brand-logo">
+            </a>
+            <a href="https://oneplus.com.ru/" class="brand-card">
+                <img src="image 5.png" alt="OnePlus" class="brand-logo">
+            </a>
+        </div>
+
+        <h2 class="section-title">Рекомендуем к покупке</h2>
+        
+        <div class="brands-grid">
+            <div class="brand-card">
+                <img src="watch-Photoroom.png" alt="Умные часы" class="brand-logo">
+                <p class="product-title">Умные часы</p>
+            </div>
+            <div class="brand-card">
+                <img src="powerbank-Photoroom .png" alt="Power Bank" class="brand-logo">
+                <p class="product-title">Портативные зарядки</p>
+            </div>
+            <div class="brand-card">
+                <img src="cehol-Photoroom.png" alt="Чехлы" class="brand-logo">
+                <p class="product-title">Защитные чехлы</p>
+            </div>
         </div>
     </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>О компании</h3>
+                <p>TechMobile - ведущий поставщик мобильной электроники с 2015 года. Мы предлагаем только оригинальную технику с официальной гарантией.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Контакты</h3>
+                <ul class="footer-links">
+                    <li>Телефон: +7 (495) 123-45-67</li>
+                    <li>Email: info@techmobile.ru</li>
+                    <li>Адрес: Москва, ул. Технологическая, 15</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Полезные ссылки</h3>
+                <ul class="footer-links">
+                    <li><a href="/warranty">Гарантия</a></li>
+                    <li><a href="/delivery">Доставка</a></li>
+                    <li><a href="/trade-in">Trade-in</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
