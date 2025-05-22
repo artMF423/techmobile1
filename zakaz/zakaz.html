@@ -357,6 +357,109 @@
                 margin-top: 30px;
             }
         }
+        /* Order Form Styles */
+    .order-form-container {
+        display: none;
+        background: var(--secondary-bg);
+        border-radius: var(--border-radius);
+        padding: 25px;
+        margin-top: 20px;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .order-form-title {
+        font-size: 22px;
+        margin-bottom: 20px;
+        font-weight: 600;
+        background: var(--accent-gradient);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 8px;
+        color: var(--text-secondary);
+        font-size: 14px;
+    }
+
+    .form-input {
+        width: 100%;
+        padding: 12px 15px;
+        background: var(--card-bg);
+        border: 1px solid #333;
+        border-radius: 8px;
+        color: var(--text-primary);
+        font-family: 'Montserrat', sans-serif;
+        transition: var(--transition);
+    }
+
+    .form-input:focus {
+        outline: none;
+        border-color: #8f94fb;
+        box-shadow: 0 0 0 2px rgba(143, 148, 251, 0.2);
+    }
+
+    .form-buttons {
+        display: flex;
+        gap: 15px;
+        margin-top: 25px;
+        flex-wrap: wrap;
+    }
+
+    .form-button {
+        padding: 12px 25px;
+        border: none;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: var(--transition);
+        font-weight: 500;
+        flex: 1;
+        min-width: 150px;
+    }
+
+    .form-button-back {
+        background: #333;
+        color: white;
+    }
+
+    .form-button-back:hover {
+        background: #444;
+        transform: translateY(-2px);
+    }
+
+    .form-button-submit {
+        background: var(--accent-gradient);
+        color: white;
+    }
+
+    .form-button-submit:hover {
+        background: var(--accent-gradient-hover);
+        transform: translateY(-2px);
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 480px) {
+        .order-form-container {
+            padding: 15px;
+        }
+        
+        .form-buttons {
+            flex-direction: column;
+        }
+        
+        .form-button {
+            width: 100%;
+        }
+    }
     </style>
 </head>
 <body>
@@ -392,6 +495,43 @@
             
             <div class="basket-empty" id="emptyBasket">Ваша корзина пуста</div>
         </div>
+        <div class="order-form-container" id="orderForm">
+    <h2 class="order-form-title">Оформление заказа</h2>
+    <form id="checkoutForm">
+        <div class="form-group">
+            <label class="form-label" for="name">Имя:</label>
+            <input type="text" class="form-input" id="name" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="phone">Телефон:</label>
+            <input type="tel" class="form-input" id="phone" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="address">Адрес доставки:</label>
+            <input type="text" class="form-input" id="address" required>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="payment">Способ оплаты:</label>
+            <select class="form-input" id="payment" required>
+                <option value="cash">Наличными при получении</option>
+                <option value="card">Онлайн-оплата картой</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label class="form-label" for="comment">Комментарий к заказу:</label>
+            <textarea class="form-input" id="comment" rows="3"></textarea>
+        </div>
+        
+        <div class="form-buttons">
+            <button type="button" class="form-button form-button-back" id="backToBasket">Назад</button>
+            <button type="submit" class="form-button form-button-submit">Подтвердить заказ</button>
+        </div>
+    </form>
+</div>
     </main>
     
     <footer>
@@ -571,6 +711,51 @@
         updateAuthState();
         window.location.href = '/techmobile1/index.html'; // Перенаправление на главную
     }
+     checkoutBtn.addEventListener('click', function() {
+        if (basket.length === 0) {
+            showAlert('Корзина пуста!');
+            return;
+        }
+        
+        // Скрываем корзину и показываем форму
+        basketSummary.style.display = 'none';
+        document.getElementById('orderForm').style.display = 'block';
+    });
+
+    // Обработчик кнопки "Назад"
+    document.getElementById('backToBasket').addEventListener('click', function() {
+        document.getElementById('orderForm').style.display = 'none';
+        basketSummary.style.display = 'flex';
+    });
+
+    // Обработчик отправки формы
+    document.getElementById('checkoutForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        const orderData = {
+            name: document.getElementById('name').value,
+            phone: document.getElementById('phone').value,
+            address: document.getElementById('address').value,
+            payment: document.getElementById('payment').value,
+            comment: document.getElementById('comment').value,
+            items: basket,
+            total: basketTotal.textContent
+        };
+
+        // Здесь можно добавить отправку данных на сервер
+        console.log('Order data:', orderData);
+        
+        showAlert('Заказ успешно оформлен! Спасибо за покупку!', 'success');
+        
+        // Очищаем корзину
+        basket = [];
+        saveBasket();
+        updateBasketView();
+        
+        // Сбрасываем форму и скрываем ее
+        this.reset();
+        document.getElementById('orderForm').style.display = 'none';
+    });
         
     </script>
 </body>
