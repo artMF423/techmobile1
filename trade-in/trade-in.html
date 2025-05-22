@@ -466,7 +466,7 @@
 <body>
     <header>
         <div class="logo">
-            <a href="/techmobile1/glavnaya/glavnaya.html">
+            <a href="/techmobile1/index.html">
                 <img src="freepik__background__29318 2.png" alt="TechLogo">
             </a>
         </div>
@@ -603,6 +603,22 @@
         });
 
         updatePrice();
+        // Скрипт для авторизации
+        document.addEventListener('DOMContentLoaded', () => {
+            updateAuthState();
+        });
+
+        function updateAuthState() {
+            const isLoggedIn = !!sessionStorage.getItem('currentUser');
+            document.getElementById('profileBtn').style.display = isLoggedIn ? 'block' : 'none';
+            document.getElementById('loginBtn').style.display = isLoggedIn ? 'none' : 'block';
+        }
+
+        function logout() {
+            sessionStorage.removeItem('currentUser');
+            updateAuthState();
+            window.location.href = '/techmobile1/index.html';
+        }
     </script>
 </body>
 </html>
